@@ -1,0 +1,189 @@
+# E-Commerce Analytics Project Report
+
+**Data Period:** July 2023 – December 2024
+**Total Transactions:** 100,000 | **Unique Customers:** 19,865 | **Unique Products:** 1,000
+
+---
+
+## 1. Project Overview
+
+This project is a full end-to-end analysis of a synthetic e-commerce dataset covering roughly 18 months of transactions. The goal was straightforward — take raw transactional data, clean it up, run SQL-style aggregations, segment customers using RFM analysis, and tie everything together in a Power BI dashboard.
+
+It's the kind of workflow you'd see in a real analyst role: messy data in, actionable insights out.
+
+**Dataset at a Glance:**
+
+| Metric | Value |
+|---|---|
+| Total Transactions | 100,000 |
+| Unique Customers | 19,865 |
+| Unique Products | 1,000 |
+| Date Range | Jul 2023 – Dec 2024 |
+| Categories | Electronics, Books, Toys, Clothing, Home Appliances |
+| Regions | Asia, North America, Europe |
+
+---
+
+## 2. Tools & Tech Stack
+
+- **Python (pandas, numpy)** — Data cleaning and feature engineering in Jupyter Notebook
+- **SQL** — Aggregation queries for revenue, profit, and trend analysis
+- **RFM Analysis** — Customer segmentation using Recency, Frequency, Monetary scoring
+- **Power BI** — Final interactive dashboard (.pbix)
+- **Excel** — Storing and reviewing query outputs
+
+---
+
+## 3. Data Cleaning
+
+The raw dataset had 100,000 rows. First step was making sure the data was actually usable before doing any analysis — garbage in, garbage out.
+
+**What was done:**
+
+Removed duplicates based on Transaction_ID and dropped rows missing critical fields like Customer_ID, Transaction_Date, and Revenue. Any missing values in ad metrics (Clicks, Impressions, Ad_Spend, etc.) were filled with 0 rather than dropping rows — most of those were just transactions with no ad activity.
+
+Dates were parsed and broken out into Year, Month, Quarter, and YearMonth columns — useful for slicing trends later. Negative Revenue and zero Units_Sold rows were filtered out. Ad_Spend negatives were flipped to positive using abs() since those were clearly data entry errors, not actual negative spends.
+
+Category and Region strings were cleaned up with strip() and title() to make sure 'electronics' and 'Electronics' didn't get counted separately.
+
+**New columns engineered:**
+
+| Column | Formula | Purpose |
+|---|---|---|
+| Profit | Revenue - Ad_Spend | Bottom-line after advertising cost |
+| Profit_Margin_Pct | (Profit / Revenue) x 100 | Margin as a percentage |
+| Revenue_Per_Unit | Revenue / Units_Sold | Average selling price per unit |
+| ROAS | Revenue / Ad_Spend | Return on Ad Spend efficiency |
+
+After cleaning: still 100,000 rows — the dataset was actually quite clean to begin with, which is typical for synthetic data. In a real scenario you'd expect more issues.
+
+---
+
+## 4. SQL Analysis
+
+After cleaning, SQL queries were run to answer the core business questions around revenue, profitability, and performance by category, region, and time.
+
+**Overall Numbers:**
+
+| Total Revenue | Total Profit | Total Orders | Overall ROAS |
+|---|---|---|---|
+| $55,311,081 | $44,263,357 | 100,000 | 5.01x |
+
+Profit margin sitting at ~80% overall looks high, but remember this is profit after ad spend only — it doesn't account for COGS, fulfillment, or other operating costs. In a real business context you'd want to layer in those costs.
+
+**Revenue by Category:**
+
+| Category | Revenue | Profit | Margin % |
+|---|---|---|---|
+| Electronics | $11,326,820 | $8,944,388 | 45.9% |
+| Books | $11,195,312 | $9,085,441 | 48.8% |
+| Toys | $11,194,842 | $8,906,124 | 48.5% |
+| Clothing | $11,034,899 | $8,911,515 | 54.4% |
+| Home Appliances | $10,559,207 | $8,415,889 | 36.5% |
+
+Revenue is remarkably even across all five categories — within about 7% of each other. Clothing actually has the best margin percentage at 54.4%, while Home Appliances lags behind at 36.5%, likely due to higher ad spend needed to drive conversions on big-ticket items.
+
+**Revenue by Region:**
+
+| Region | Revenue | Profit |
+|---|---|---|
+| Asia | $18,492,871 | $14,793,767 |
+| North America | $18,419,229 | $14,731,567 |
+| Europe | $18,398,981 | $14,738,023 |
+
+Almost perfectly balanced across regions — which again is a sign of synthetic data. Real regional splits are rarely this even. That said, it tells us the model doesn't have a regional skew to worry about.
+
+**Revenue Trend by Quarter:**
+
+| Period | Revenue | Notes |
+|---|---|---|
+| Q4 2023 | $3,723,070 | Partial quarter — data starts July 2023 |
+| Q1 2024 | $13,683,188 | Strong start to full-year data |
+| Q2 2024 | $13,666,755 | Stable, slight dip |
+| Q3 2024 | $13,703,405 | Back up slightly |
+| Q4 2024 (partial) | $10,534,663 | Oct–Dec only |
+
+Q1 through Q3 2024 are very consistent at ~$13.7M per quarter, which is good stability. Q4 2024 looks lower but it's a partial period (the data ends mid-December), so that's not a real decline.
+
+---
+
+## 5. RFM Customer Segmentation
+
+RFM stands for Recency, Frequency, and Monetary — it's a classic way to segment customers based on their buying behavior. Each customer gets a score of 1–4 on each dimension, then those scores get combined to assign them a segment.
+
+The dataset has 19,865 unique customers. Here's how they broke down:
+
+| Segment | Count | % of Customers | What it means |
+|---|---|---|---|
+| Loyal | 3,857 | 19.4% | Frequent buyers who've purchased recently |
+| Needs Attention | 3,709 | 18.7% | Were good customers, starting to slip |
+| Potential Loyal | 3,523 | 17.7% | Recent buyers with growth potential |
+| Champion | 3,295 | 16.6% | Best customers — recent, frequent, high spend |
+| Lost | 2,749 | 13.8% | Haven't bought in a long time |
+| Cannot Lose | 1,396 | 7.0% | High-value but lapsed — urgent retention targets |
+| At Risk | 1,336 | 6.7% | Previously good, showing drop-off signs |
+
+**Key Takeaways from RFM:**
+
+Champions and Loyal customers together make up about 36% of the customer base — that's a solid foundation of engaged buyers. The strategy there is retention: keep these people happy, don't over-discount them.
+
+"Cannot Lose" is only 7% of customers but probably a disproportionate share of revenue. These are high-value customers who've gone quiet. Win-back campaigns — personalized offers, re-engagement emails — should be prioritized here.
+
+"Needs Attention" at 18.7% is a warning sign segment. These customers haven't fallen off completely but they're trending that way. Proactive outreach is the play before they move into At Risk or Lost.
+
+"Lost" at 13.8% — realistically, some of these won't come back. But a subset may respond to deep discounts or compelling offers, so a carefully targeted win-back could recover some revenue without burning margins across the board.
+
+---
+
+## 6. Power BI Dashboard
+
+The final step was pulling everything into a Power BI dashboard (Ecommerce_Analytics_Dashboard.pbix). The dashboard is designed to give a business user a quick read on performance without needing to dig through spreadsheets.
+
+**Dashboard sections:**
+
+- **Executive Overview** — KPI cards for Revenue, Profit, Orders, and ROAS at a glance
+- **Revenue Trend** — Monthly and quarterly line charts showing revenue and profit over time
+- **Category & Region Breakdown** — Bar charts comparing performance across product categories and geographies
+- **Customer Segmentation** — RFM segment distribution with count and revenue contribution per segment
+- **Ad Performance** — CTR, CPC, and ROAS metrics filtered by category and region
+
+All visuals are connected to slicers for Year, Quarter, Category, and Region — so you can drill down into any combination without writing a query.
+
+---
+
+## 7. Key Insights & Recommendations
+
+**What's working:**
+
+ROAS of 5.01x is solid — for every dollar spent on ads, $5 is coming back in revenue. Electronics is the top revenue driver, but Clothing is the most efficient from a margin perspective at 54.4%.
+
+The customer base is relatively healthy — 36% of customers fall into Champion or Loyal segments, meaning there's a strong repeat buyer base to build on.
+
+**What needs attention:**
+
+The "Cannot Lose" and "At Risk" segments together are about 2,700 customers. These are likely high-value individuals showing disengagement. A targeted retention campaign — even something simple like a personalized email with a limited-time offer — could have meaningful revenue impact.
+
+Home Appliances has the lowest margin at 36.5% and is probably carrying higher ad costs. Worth doing a deeper dive into CPC and conversion rates for that category specifically.
+
+**Suggested next steps:**
+
+1. Build a cohort analysis to track how retention rates change over time by acquisition month.
+2. Run A/B test simulations on discount levels — the data has a Discount_Applied field which could be mined to see if higher discounts are actually driving incremental revenue or just cutting into margin.
+3. Add a product-level analysis — currently everything is at category level, but drilling into the 1,000 individual products would reveal which SKUs are driving performance and which are dragging it down.
+4. Predictive CLV model — with the RFM scores as a base, building a simple lifetime value predictor would be a natural next extension of this project.
+
+---
+
+## 8. Project Files
+
+| File | Description |
+|---|---|
+| synthetic_ecommerce_data.csv | Raw source dataset (100K rows) |
+| Python_data_cleaning.ipynb | Data cleaning and feature engineering notebook |
+| ecommerce_cleaned.csv | Cleaned dataset ready for analysis |
+| ecommerce_sql_analysis.ipynb | SQL queries and aggregations |
+| ecommerce_sql_results.xlsx | SQL query outputs (5 sheets) |
+| ecommerce_rfm_analysis.ipynb | RFM scoring and segmentation notebook |
+| ecommerce_rfm.csv | Customer-level RFM scores and segments |
+| ecommerce_rfm_results.xlsx | RFM output formatted for reporting |
+| Ecommerce_Analytics_Dashboard.pbix | Final Power BI dashboard |
