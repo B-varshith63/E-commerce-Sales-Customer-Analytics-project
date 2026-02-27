@@ -1,79 +1,79 @@
-# 🛒 E-Commerce Analytics — End-to-End Data Analytics Project
+# E-Commerce Analytics — End-to-End Data Analytics Project
 
 > **Analyzing 100,000 transactions to uncover revenue drivers, customer behavior, and profitability insights using Python, SQL, and Power BI.**
 
 ---
 
-## 📌 Business Problem
+## Business Problem
 
 An e-commerce company wants to understand:
-- 👉 Where is revenue coming from?
-- 👉 Which customers are most valuable?
-- 👉 Which products and categories are most profitable?
-- 👉 How to improve customer retention and business decisions?
+- Where is revenue coming from?
+- Which customers are most valuable?
+- Which products and categories are most profitable?
+- How to improve customer retention and business decisions?
 
 ---
 
-## 🏆 Project Highlights
+## Project Highlights
 
 | Metric | Value |
 |--------|-------|
-| 💰 Total Revenue | $55,311,081 |
-| 📈 Total Profit | $44,263,357 |
-| 🛒 Total Transactions | 100,000 |
-| 👥 Unique Customers | 19,865 |
-| 📦 Unique Products | 1,000 |
-| 📢 Overall ROAS | 5.01x |
-| 🗓️ Date Range | Dec 2023 – Dec 2024 |
-| 🌍 Regions | Asia, Europe, North America |
-| 🗂️ Categories | Electronics, Books, Toys, Clothing, Home Appliances |
+| Total Revenue | $55,311,081 |
+| Total Profit | $44,263,357 |
+| Total Transactions | 100,000 |
+| Unique Customers | 19,865 |
+| Unique Products | 1,000 |
+| Overall ROAS | 5.01x |
+| Date Range | Dec 2023 – Dec 2024 |
+| Regions | Asia, Europe, North America |
+| Categories | Electronics, Books, Toys, Clothing, Home Appliances |
 
 ---
 
-## 🛠️ Tools & Technologies
+## Tools & Technologies
 
 | Tool | Purpose |
 |------|---------|
-| 🐍 Python (Pandas, NumPy, Matplotlib) | Data cleaning & RFM analysis |
-| 🗄️ SQL (SQLite via Python) | Business queries & analysis |
-| 📊 Power BI Desktop | 4-page interactive dashboard |
-| 📓 Jupyter Notebook | Code & documentation |
-| 📁 Excel | Results storage |
+| Python (Pandas, NumPy, Matplotlib) | Data cleaning & RFM analysis |
+| SQL (SQLite via Python) | Business queries & analysis |
+| Power BI Desktop | 4-page interactive dashboard |
+| Jupyter Notebook | Code & documentation |
+| Excel | Results storage |
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 ecommerce-analytics/
 │
-├── 📓 notebooks/
+├── notebooks/
 │   ├── Python_data_cleaning.ipynb       ← Step 1: Data cleaning
 │   ├── ecommerce_sql_analysis.ipynb     ← Step 2: SQL queries
 │   └── ecommerce_rfm_analysis.ipynb     ← Step 3: RFM segmentation
 │
-├── 📊 data/
+├── data/
 │   ├── ecommerce_cleaned.csv            ← Cleaned dataset (100K rows, 24 cols)
 │   └── ecommerce_rfm.csv                ← RFM scores (19,865 customers)
 │
-├── 📈 results/
+├── results/
 │   ├── ecommerce_sql_results.xlsx       ← SQL results (5 sheets)
 │   └── ecommerce_rfm_results.xlsx       ← RFM segment summary
 │
-├── 📉 charts/
+├── charts/
 │   └── rfm_segments_chart.png           ← RFM visualization
 │
-├── 📋 dashboard/
+├── dashboard/
 │   └── Ecommerce_Analytics_Dashboard.pbix  ← Power BI dashboard
 │
-└── 📄 README.md
+└── README.md
 ```
 
-> ⚠️ Raw dataset not included due to file size. Download from [Kaggle — Comprehensive Synthetic E-Commerce Dataset](https://www.kaggle.com/datasets/imranalishahh/comprehensive-synthetic-e-commerce-dataset)
+> Raw dataset not included due to file size. Download from [Kaggle — Comprehensive Synthetic E-Commerce Dataset](https://www.kaggle.com/datasets/imranalishahh/comprehensive-synthetic-e-commerce-dataset)
 
 ---
 
-## ⚙️ Step 1 — Data Cleaning (Python)
+## Step 1 — Data Cleaning (Python)
 
 **Notebook:** `notebooks/Python_data_cleaning.ipynb`
 
@@ -90,7 +90,7 @@ ecommerce-analytics/
 
 ---
 
-## 🗄️ Step 2 — SQL Analysis
+## Step 2 — SQL Analysis
 
 **Notebook:** `notebooks/ecommerce_sql_analysis.ipynb`
 
@@ -116,7 +116,7 @@ ORDER BY YearMonth;
 
 ---
 
-## 🎯 Step 3 — RFM Customer Segmentation
+## Step 3 — RFM Customer Segmentation
 
 **Notebook:** `notebooks/ecommerce_rfm_analysis.ipynb`
 
@@ -129,32 +129,32 @@ Each of 19,865 customers scored **1–5** on:
 
 | Segment | Customers | % of Base | Revenue | Avg Spend |
 |---------|-----------|-----------|---------|-----------|
-| 🏆 Champion | 3,295 | 16.6% | $15.2M | $4,620 |
-| 💛 Loyal | 3,857 | 19.4% | $13.4M | $3,483 |
-| 🌱 Potential Loyal | 3,523 | 17.7% | $6.4M | $1,817 |
-| 📢 Needs Attention | 3,709 | 18.7% | $6.3M | $1,709 |
-| 🚨 Cannot Lose | 1,396 | 7.0% | $6.0M | $4,303 |
-| ⚠️ At Risk | 1,336 | 6.7% | $4.0M | $2,986 |
-| ❌ Lost | 2,749 | 13.8% | $3.9M | $1,424 |
+| Champion | 3,295 | 16.6% | $15.2M | $4,620 |
+| Loyal | 3,857 | 19.4% | $13.4M | $3,483 |
+| Potential Loyal | 3,523 | 17.7% | $6.4M | $1,817 |
+| Needs Attention | 3,709 | 18.7% | $6.3M | $1,709 |
+| Cannot Lose | 1,396 | 7.0% | $6.0M | $4,303 |
+| At Risk | 1,336 | 6.7% | $4.0M | $2,986 |
+| Lost | 2,749 | 13.8% | $3.9M | $1,424 |
 
 ![RFM Segments](charts/rfm_segments_chart.png)
 
 ---
 
-## 📊 Step 4 — Power BI Dashboard (4 Pages)
+## Step 4 — Power BI Dashboard (4 Pages)
 
 **File:** `dashboard/Ecommerce_Analytics_Dashboard.pbix`
 
 | Page | Content |
 |------|---------|
-| 1️⃣ Executive Overview | KPI cards, monthly trend, revenue by category & region |
-| 2️⃣ Product Performance | Top 10 products, revenue vs profit, profit margin % |
-| 3️⃣ Customer Analytics | RFM segments, top customers, new vs repeat (96.72% repeat!) |
-| 4️⃣ Geography Insights | Interactive map, revenue by region, region × category matrix |
+| 1️. Executive Overview | KPI cards, monthly trend, revenue by category & region |
+| 2️. Product Performance | Top 10 products, revenue vs profit, profit margin % |
+| 3️, Customer Analytics | RFM segments, top customers, new vs repeat (96.72% repeat!) |
+| 4️. Geography Insights | Interactive map, revenue by region, region × category matrix |
 
 ---
 
-## 💡 Key Business Insights
+## Key Business Insights
 
 **1. Clothing Drives Highest Profit Margins**
 > Clothing delivers 54.4% profit margin vs Home Appliances at 36.5%. Reallocating ad budget to Clothing improves overall profitability.
@@ -173,20 +173,20 @@ Each of 19,865 customers scored **1–5** on:
 
 ---
 
-## 📋 Business Recommendations
+## Business Recommendations
 
 | Priority | Action | Expected Impact |
 |----------|--------|-----------------|
-| 🔴 Immediate | VIP loyalty program for 3,295 Champions | Protect $15.2M revenue |
-| 🔴 Immediate | Win-back campaign for Cannot Lose segment | Recover up to $6M |
-| 🟡 Short-term | Shift ad spend toward Clothing (54% margin) | Improve profit margin |
-| 🟡 Short-term | Nurture 3,523 Potential Loyal customers | Convert to Loyal segment |
-| 🟢 Strategic | Audit Home Appliances SKUs (36% margin) | Improve margin to 45%+ |
-| 🟢 Strategic | Build Q4 seasonal campaign calendar | Capitalize on peak demand |
+| Immediate | VIP loyalty program for 3,295 Champions | Protect $15.2M revenue |
+| Immediate | Win-back campaign for Cannot Lose segment | Recover up to $6M |
+| Short-term | Shift ad spend toward Clothing (54% margin) | Improve profit margin |
+| Short-term | Nurture 3,523 Potential Loyal customers | Convert to Loyal segment |
+| Strategic | Audit Home Appliances SKUs (36% margin) | Improve margin to 45%+ |
+| Strategic | Build Q4 seasonal campaign calendar | Capitalize on peak demand |
 
 ---
 
-## 🚀 How to Run This Project
+## How to Run This Project
 
 ### Prerequisites
 ```bash
@@ -217,7 +217,7 @@ Update source path: **Home → Transform Data → Data Source Settings**
 
 ---
 
-## 📄 Resume Bullet Point
+## Resume Bullet Point
 
 ```
 Built end-to-end e-commerce analytics project analyzing 100,000+ transactions
@@ -229,13 +229,13 @@ profitability by $6M+.
 
 ---
 
-## 👤 Author
+## Author
 
-**Bheemanathi**
+**Varshith Bhimanathi**
 Data Analyst | Python · SQL · Power BI
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://linkedin.com/in/YOUR_PROFILE)
-[![GitHub](https://img.shields.io/badge/GitHub-Follow-black)](https://github.com/YOUR_USERNAME)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://www.linkedin.com/in/varshith-bhimanathi-ba393a289/)
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-black)](https://www.linkedin.com/in/varshith-bhimanathi-ba393a289/)
 
 ---
 
