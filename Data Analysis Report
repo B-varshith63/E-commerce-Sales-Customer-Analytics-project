@@ -1,0 +1,183 @@
+# 🛒 E-Commerce Analytics Project
+
+## 📊 Project Overview
+
+This project presents a complete end-to-end analysis of a synthetic e-commerce dataset spanning **18 months (July 2023 – December 2024)**. The objective was to transform raw transactional data into actionable business insights through data cleaning, SQL analysis, customer segmentation, and dashboard visualization.
+
+The workflow replicates a real-world analyst pipeline:
+
+**Raw Data → Data Cleaning → SQL Analysis → Customer Segmentation → Dashboard → Business Insights**
+
+---
+
+## 📌 Dataset Summary
+
+| Metric | Value |
+|---|---|
+| Total Transactions | 100,000 |
+| Unique Customers | 19,865 |
+| Unique Products | 1,000 |
+| Date Range | Jul 2023 – Dec 2024 |
+| Categories | Electronics, Books, Toys, Clothing, Home Appliances |
+| Regions | Asia, North America, Europe |
+
+---
+
+## 🧰 Tech Stack
+
+- **Python (pandas, numpy)** → Data cleaning & feature engineering  
+- **SQL** → Aggregation queries & business analysis  
+- **RFM Analysis** → Customer segmentation  
+- **Power BI** → Interactive dashboard development  
+- **Excel** → Query output validation & reporting  
+
+---
+
+## 🧹 Data Cleaning & Feature Engineering
+
+### Cleaning Steps
+- Removed duplicates using `Transaction_ID`
+- Dropped rows missing critical fields
+- Filled missing advertising metrics with `0`
+- Parsed date columns and created Year, Month, Quarter, YearMonth
+- Filtered negative revenue & zero unit sales
+- Corrected negative ad spend using `abs()`
+- Standardized category & region text formatting
+
+### Engineered Columns
+
+| Column | Formula | Purpose |
+|---|---|---|
+| Profit | Revenue − Ad_Spend | Post-advertising profitability |
+| Profit_Margin_Pct | (Profit / Revenue) × 100 | Margin percentage |
+| Revenue_Per_Unit | Revenue / Units_Sold | Average selling price |
+| ROAS | Revenue / Ad_Spend | Advertising efficiency |
+
+---
+
+## 📈 SQL Business Analysis
+
+### Overall Metrics
+
+| Total Revenue | Total Profit | Total Orders | ROAS |
+|---|---|---|---|
+| $55,311,081 | $44,263,357 | 100,000 | 5.01x |
+
+> Note: Profit excludes COGS and operational costs.
+
+---
+
+### Revenue by Category
+
+| Category | Revenue | Profit | Margin % |
+|---|---|---|---|
+| Electronics | $11,326,820 | $8,944,388 | 45.9% |
+| Books | $11,195,312 | $9,085,441 | 48.8% |
+| Toys | $11,194,842 | $8,906,124 | 48.5% |
+| Clothing | $11,034,899 | $8,911,515 | 54.4% |
+| Home Appliances | $10,559,207 | $8,415,889 | 36.5% |
+
+---
+
+### Revenue by Region
+
+| Region | Revenue | Profit |
+|---|---|---|
+| Asia | $18,492,871 | $14,793,767 |
+| North America | $18,419,229 | $14,731,567 |
+| Europe | $18,398,981 | $14,738,023 |
+
+---
+
+### Revenue Trend by Quarter
+
+| Period | Revenue | Notes |
+|---|---|---|
+| Q4 2023 | $3,723,070 | Partial quarter |
+| Q1 2024 | $13,683,188 | Strong growth |
+| Q2 2024 | $13,666,755 | Stable |
+| Q3 2024 | $13,703,405 | Slight increase |
+| Q4 2024 | $10,534,663 | Partial period |
+
+---
+
+## 👥 RFM Customer Segmentation
+
+| Segment | Count | % | Description |
+|---|---|---|---|
+| Loyal | 3,857 | 19.4% | Frequent and recent buyers |
+| Needs Attention | 3,709 | 18.7% | Declining engagement |
+| Potential Loyal | 3,523 | 17.7% | Recent buyers with growth potential |
+| Champion | 3,295 | 16.6% | High-value customers |
+| Lost | 2,749 | 13.8% | Long inactive |
+| Cannot Lose | 1,396 | 7.0% | High value but lapsed |
+| At Risk | 1,336 | 6.7% | Engagement declining |
+
+### Key Insights
+- Champion + Loyal = **36% strong customer base**
+- Cannot Lose = retention priority
+- Needs Attention = proactive engagement opportunity
+- Lost segment requires selective win-back strategy
+
+---
+
+## 📊 Power BI Dashboard
+
+Dashboard delivers executive-level insights with drill-down capability.
+
+### Dashboard Sections
+- Executive KPI Overview
+- Revenue & Profit Trends
+- Category & Regional Performance
+- Customer Segmentation (RFM)
+- Advertising Performance
+
+---
+
+## 💡 Key Insights & Recommendations
+
+### Strengths
+- ROAS of 5.01x indicates strong ad efficiency
+- Electronics drives revenue; Clothing shows best margin
+- Healthy repeat customer base
+
+### Areas for Improvement
+- Retention risk in Cannot Lose & At Risk segments
+- Home Appliances shows margin pressure
+- Need SKU-level profitability analysis
+
+### Next Steps
+1. Cohort retention analysis
+2. Discount A/B testing
+3. Product-level deep dive
+4. Predictive CLV modeling
+
+---
+
+## 📁 Project Files
+
+| File | Description |
+|---|---|
+| synthetic_ecommerce_data.csv | Raw dataset |
+| Python_data_cleaning.ipynb | Data cleaning notebook |
+| ecommerce_cleaned.csv | Cleaned dataset |
+| ecommerce_sql_analysis.ipynb | SQL analysis notebook |
+| ecommerce_sql_results.xlsx | SQL outputs |
+| ecommerce_rfm_analysis.ipynb | RFM analysis |
+| ecommerce_rfm.csv | Customer RFM dataset |
+| ecommerce_rfm_results.xlsx | RFM report |
+| Ecommerce_Analytics_Dashboard.pbix | Final dashboard |
+
+---
+
+## ⭐ Future Improvements
+- Cohort analysis
+- Predictive CLV modeling
+- Demand forecasting
+- Marketing attribution modeling
+- Churn prediction
+
+---
+
+## 🤝 Author
+**Varshith**
